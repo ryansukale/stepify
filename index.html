@@ -11,8 +11,9 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="dependencies/css/bootstrap.min.css">
-        <link rel="stylesheet" href="stepify.css">
+        <link rel="stylesheet" href="index.css">
 		
+        <link rel="stylesheet" href="jquery.stepify.css">
 		
 		<style>
             body {
@@ -21,23 +22,41 @@
             }
         </style>
 		
+		
     </head>
     <body>
 
         <div class="container">
 
-			<div class="$[![]!]">
-				
+		
+			<div class="operation">
+				Some element 1
 			</div>
 			
+			<div class="operation">
+				Some element 2
+			</div>
+			
+			<div class="operation">
+				Some element 3
+			</div>
+			
+			<div class="operation">
+				Some element 4
+			</div>
 			
 
-        </div> <!-- /container -->
+        </div>
 
     </body>
 	
 	<script src="./dependencies/js/jquery.js"></script>
 	<script src="./dependencies/js/underscore.js"></script>
-	<script src="./stepify.js"></script>
+	<script src="./jquery.stepify.js"></script>
+	
+	
+	<script type="text/javascript">
+		$('.operation').stepify();
+	</script>
 	
 </html>
