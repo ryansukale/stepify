@@ -68,6 +68,46 @@
 		
 		$('.'+settings.stepContainerClass).addClass('hidden').eq(0).removeClass('hidden');
 		
+			function bindHandlers(){
+				$('.'+settings.nextBtnClass).on('click',function(event){
+				var $this = $(this);
+				var $target = $(event.target);
+				
+				var $sequenceStep = $this.parents('.'+settings.stepContainerClass);
+				
+				var hooks = $sequenceStep.data('hooks-next');
+				
+				if(hooks){
+					$.each(hooks, function(index, hookFunction){
+						hookFunction($sequenceStep);
+					});
+				}
+				
+				$sequenceStep.addClass('hidden');
+				
+				//Need to figure out whether scroll to top is required
+				//$("html, body").animate({ scrollTop: 0 }, "fast");
+				
+				$sequenceStep.next().removeClass('hidden');
+				
+			});
+			
+			$('.'+settings.prevBtnClass).on('click',function(event){
+				var $this = $(this);
+				var $target = $(event.target);
+				
+				var $sequenceStep = $this.parents('.'+settings.stepContainerClass);
+				
+				$sequenceStep.addClass('hidden');
+				
+				$("html, body").animate({ scrollTop: 0 }, "fast");
+				
+				$sequenceStep.prev().removeClass('hidden');
+			});
+		}
+		
+		bindHandlers();
+		
 		
 	}
 	
