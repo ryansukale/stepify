@@ -8,8 +8,8 @@
 		var defaultOptions = {
 			distribution : [this.length/2, this.length-this.length/2], //By default, divide the elements into two parts.
 			stepContainerClass : 'step-container',
-			nextBtnClass : 'next-step btn',
-			prevBtnClass : 'prev-step btn',
+			nextBtnClass : 'next-step',
+			prevBtnClass : 'prev-step',
 			nextBtnText : 'Next &gt;',
 			prevBtnText : '&lt; Prev',
 			navBtnContainerClass : 'nav-btn-container',
@@ -21,8 +21,8 @@
 		var stepContainerStr = '<div class="'+settings.stepContainerClass+'"></div>';
 		var btnContainerStr = '<div class="'+settings.navBtnContainerClass+'"></div>';
 		
-		var prevBtnStr = '<div class="'+settings.prevBtnClass+'">'+settings.prevBtnText+'</div>';
-		var nextBtnStr = '<div class="'+settings.nextBtnClass+'">'+settings.nextBtnText+'</div>';
+		var prevBtnStr = '<div class="btn '+settings.prevBtnClass+'">'+settings.prevBtnText+'</div>';
+		var nextBtnStr = '<div class="btn '+settings.nextBtnClass+'">'+settings.nextBtnText+'</div>';
 		var divStr = '<div></div>';
 		
 		var stepContainers = 0;
@@ -37,28 +37,37 @@
 			var $stepContainer = $(stepContainerStr);
 			var $div = $(divStr);
 			
+			$div.addClass(settings.mainContainerClass);
 			$btnContainer.append(prevBtnStr + nextBtnStr);
 			
 			for(var i=0;i<numberOfElements;i++){
 				$div.append($originalSet[currentElement]);
-				console.log(currentElement);
 				currentElement++;
 			}
 			
-			
 			$stepContainer.append($div);
 			$stepContainer.append($btnContainer);
+			
+			console.log(index);
+			
+			if(index===0){
+				$stepContainer.children().find('.'+settings.prevBtnClass).remove();
+			}else{
+				if(index===settings.distribution.length-1){
+					$stepContainer.children().find('.'+settings.nextBtnClass).remove();
+				}
+			}
 			
 			//Set the id of the stepContainer
 			$stepContainer.attr('id','step-'+stepContainers);
 			stepContainers = stepContainers+1;
 			
-			console.log($stepContainer);
-			
 			$parent.append($stepContainer);
 			
-			
 		});
+		
+		$('.'+settings.stepContainerClass).addClass('hidden').eq(0).removeClass('hidden');
+		
 		
 	}
 	
