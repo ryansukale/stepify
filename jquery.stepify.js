@@ -13,7 +13,9 @@
 			nextBtnText : 'Next &gt;',
 			prevBtnText : '&lt; Prev',
 			navBtnContainerClass : 'nav-btn-container',
-			mainContainerClass : 'stepify'
+			mainContainerClass : 'stepify',
+			prevHooks : {}, //Set of functions that you want to get executed on clicking prev for a step
+			nextHooks : {}, //Set of functions that you want to get executed on clicking next for a step
 		}
 		
 		var settings = $.extend(defaultOptions, options);
@@ -68,8 +70,41 @@
 		
 		$('.'+settings.stepContainerClass).addClass('hidden').eq(0).removeClass('hidden');
 		
-			function bindHandlers(){
-				$('.'+settings.nextBtnClass).on('click',function(event){
+		function bindHooks(){
+		
+			var prevHooks = settings.prevHooks;
+			var nextHooks = settings.nextHooks;
+			
+			var $steps = $('.'+settings.stepContainerClass);
+			
+			if(!_.isEmpty(prevHooks)){
+				
+				$.each(prevHooks, function(stepId, hookFunctions){
+					$steps.eq(stepId).data('hooks-prev',hookFunctions);
+				});
+				
+			}
+			if(!_.isEmpty(nextHooks)){
+				
+				$.each(nextHooks, function(stepId, hookFunctions){
+					$steps.eq(stepId).data('hooks-next',hookFunctions);
+				});
+				
+			}
+			
+			//var hooks = $(selector).parents(sequenceStep).data('hooks-next');
+			//if(!hooks){
+			//	hooks=[];
+			//}
+			//hooks.push(hookFunction);
+			//$(selector).data('hooks-next', hooks);
+		
+		}
+		
+		
+		function bindHandlers(){
+		
+			$('.'+settings.nextBtnClass).on('click',function(event){
 				var $this = $(this);
 				var $target = $(event.target);
 				
@@ -85,28 +120,38 @@
 				
 				$sequenceStep.addClass('hidden');
 				
-				//Need to figure out whether scroll to top is required
+				//Need to figure out whether scroll to top is required or not
 				//$("html, body").animate({ scrollTop: 0 }, "fast");
 				
 				$sequenceStep.next().removeClass('hidden');
-				
-			});
 			
+			});
+		
 			$('.'+settings.prevBtnClass).on('click',function(event){
 				var $this = $(this);
 				var $target = $(event.target);
 				
 				var $sequenceStep = $this.parents('.'+settings.stepContainerClass);
 				
+				var hooks = $sequenceStep.data('hooks-prev');
+				
+				if(hooks){
+					$.each(hooks, function(index, hookFunction){
+						hookFunction($sequenceStep);
+					});
+				}
+				
 				$sequenceStep.addClass('hidden');
 				
-				$("html, body").animate({ scrollTop: 0 }, "fast");
+				//Need to figure out whether scroll to top is required or not
+				//$("html, body").animate({ scrollTop: 0 }, "fast");
 				
 				$sequenceStep.prev().removeClass('hidden');
 			});
 		}
 		
 		bindHandlers();
+		bindHooks();
 		
 		
 	}

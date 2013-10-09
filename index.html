@@ -73,7 +73,19 @@
 	
 	<script type="text/javascript">
 		$('.operation').stepify({
-			distribution:[2,3,4]
+			distribution:[2,3,4],
+			nextHooks : {
+				0 : [ 
+					function (){ console.log('next hook 1 for step 0'); return true; }, 
+					function (){ console.log('next hook 2 for step 0'); return true; } 
+					]
+			},
+			prevHooks : {
+				1 : [ 
+					function (){ console.log('prev hook 1 for step 1'); return true; }, 
+					function (){ console.log('prev hook 2 for step 1'); return true; } 
+					]
+			}
 		});
 	</script>
 	
