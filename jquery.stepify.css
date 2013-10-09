@@ -1,1 +1,7 @@
-.stepify.hidden{display:none;}
+.stepify.hidden{
+	display:none;
+}
+
+.stepify{
+	min-height:100px;
+}

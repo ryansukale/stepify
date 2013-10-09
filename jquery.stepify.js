@@ -118,12 +118,17 @@
 					});
 				}
 				
-				$sequenceStep.addClass('hidden');
+				$sequenceStep.animate({'opacity':0},500,function(){
+					$sequenceStep.addClass('hidden');
+					$sequenceStep.css({'opacity':1});
+					$sequenceStep.next().removeClass('hidden');					
+				});
+				
 				
 				//Need to figure out whether scroll to top is required or not
 				//$("html, body").animate({ scrollTop: 0 }, "fast");
 				
-				$sequenceStep.next().removeClass('hidden');
+				
 			
 			});
 		
@@ -141,12 +146,17 @@
 					});
 				}
 				
-				$sequenceStep.addClass('hidden');
+				
+				$sequenceStep.animate({'opacity':0},500,function(){
+					$sequenceStep.addClass('hidden');
+					$sequenceStep.css({'opacity':1});
+					$sequenceStep.prev().removeClass('hidden');					
+				});
 				
 				//Need to figure out whether scroll to top is required or not
 				//$("html, body").animate({ scrollTop: 0 }, "fast");
 				
-				$sequenceStep.prev().removeClass('hidden');
+				
 			});
 		}
 		
