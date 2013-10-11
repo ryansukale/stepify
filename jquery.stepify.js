@@ -84,6 +84,7 @@
 				});
 				
 			}
+			
 			if(!_.isEmpty(nextHooks)){
 				
 				$.each(nextHooks, function(stepId, hookFunctions){
@@ -91,13 +92,6 @@
 				});
 				
 			}
-			
-			//var hooks = $(selector).parents(sequenceStep).data('hooks-next');
-			//if(!hooks){
-			//	hooks=[];
-			//}
-			//hooks.push(hookFunction);
-			//$(selector).data('hooks-next', hooks);
 		
 		}
 		
@@ -112,17 +106,28 @@
 				
 				var hooks = $sequenceStep.data('hooks-next');
 				
+				var proceed = true;
+				
 				if(hooks){
+				
 					$.each(hooks, function(index, hookFunction){
-						hookFunction($sequenceStep);
+						proceed = hookFunction($sequenceStep);
+						
+						//This will cause further methods to stop
+						//executing if a method in the chain fails
+						//Useful for validation scenarios
+						return proceed;
+						
 					});
 				}
 				
-				$sequenceStep.animate({'opacity':0},500,function(){
-					$sequenceStep.addClass('hidden');
-					$sequenceStep.css({'opacity':1});
-					$sequenceStep.next().removeClass('hidden');					
-				});
+				if(proceed){
+					$sequenceStep.animate({'opacity':0},500,function(){
+						$sequenceStep.addClass('hidden');
+						$sequenceStep.css({'opacity':1});
+						$sequenceStep.next().removeClass('hidden');					
+					});
+				}
 				
 				
 				//Need to figure out whether scroll to top is required or not
@@ -140,18 +145,24 @@
 				
 				var hooks = $sequenceStep.data('hooks-prev');
 				
+				var proceed = true;
+				
 				if(hooks){
 					$.each(hooks, function(index, hookFunction){
-						hookFunction($sequenceStep);
+					
+						proceed = hookFunction($sequenceStep);
+						return proceed;
+						
 					});
 				}
 				
-				
-				$sequenceStep.animate({'opacity':0},500,function(){
-					$sequenceStep.addClass('hidden');
-					$sequenceStep.css({'opacity':1});
-					$sequenceStep.prev().removeClass('hidden');					
-				});
+				if(proceed){
+					$sequenceStep.animate({'opacity':0},500,function(){
+						$sequenceStep.addClass('hidden');
+						$sequenceStep.css({'opacity':1});
+						$sequenceStep.prev().removeClass('hidden');					
+					});
+				}
 				
 				//Need to figure out whether scroll to top is required or not
 				//$("html, body").animate({ scrollTop: 0 }, "fast");
