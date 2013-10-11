@@ -1,0 +1,19 @@
+.no-bg{
+	background:none;
+}
+
+.georgia{
+	font-family:Georgia;
+}
+
+.italic{
+	font-style:italic;
+}
+
+.justify{
+	text-align:justify;
+}
+
+.center{
+	text-align:center;
+}
