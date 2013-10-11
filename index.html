@@ -76,15 +76,15 @@
 			distribution:[2,3,4],
 			nextHooks : {
 				0 : [ 
-						function (){ console.log('validation hook 0 for step 0'); return true; }, 
-						function (){ console.log('next hook 1 for step 0'); return true; }, 
-						function (){ console.log('next hook 2 for step 0'); return true; } 
+						function ($stepContainer){ console.log('validation hook 0 for step 0'); return true; }, 
+						function ($stepContainer){ console.log('next hook 1 for step 0'); return true; }, 
+						function ($stepContainer){ console.log('next hook 2 for step 0'); return true; } 
 					]
 			},
 			prevHooks : {
 				1 : [ 
-						function (){ console.log('prev hook 1 for step 1'); return true; }, 
-						function (){ console.log('prev hook 2 for step 1'); return true; } 
+						function ($stepContainer){ console.log('prev hook 1 for step 1'); return true; }, 
+						function ($stepContainer){ console.log('prev hook 2 for step 1'); return true; } 
 					]
 			}
 		});
