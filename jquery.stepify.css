@@ -1,7 +1,12 @@
-.stepify.hidden{
+.stepify-container.hidden{
 	display:none;
 }
 
-.stepify{
+.stepify-elem-container{
 	min-height:100px;
 }
+
+.stepify-container .next-step{margin-left:5px;}
+.stepify-ba-left {margin-left:0px;}
+.stepify-ba-right {margin-right:0px;}
+.stepify-ba-center {text-align:center;margin-left:auto;margin-right:auto;}
