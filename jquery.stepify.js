@@ -14,9 +14,9 @@
 			prevBtnText : '&lt; Prev',
 			navBtnContainerClass : 'nav-btn-container',
 			mainContainerClass : 'stepify-elem-container',
-			btnAlign:'center',
-			prevHooks : {}, //Set of functions that you want to get executed on clicking prev for a step
-			nextHooks : {}, //Set of functions that you want to get executed on clicking next for a step
+			btnAlign:'center', //Specified positioning of the buttons. Accepts values 'left', 'right', and 'center'.
+			prevHooks : {}, //An map of functions that you want to get executed on clicking prev for a step.
+			nextHooks : {}, //An map of functions that you want to get executed on clicking next for a step
 		}
 		
 		function bindHooks(){
@@ -173,6 +173,7 @@
 		
 		$('.'+settings.stepContainerClass).addClass('hidden').eq(0).removeClass('hidden');
 		
+		$('.nav-btn-container','.'+settings.stepContainerClass).addClass('stepify-ba-'+settings.btnAlign);
 		
 		bindHandlers();
 		bindHooks();
