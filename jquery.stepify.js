@@ -8,10 +8,14 @@
 		var defaultOptions = {
 			distribution : [this.length/2, this.length-this.length/2], //By default, divide the elements into two parts.
 			stepContainerClass : 'stepify-container',
-			nextBtnClass : 'next-step',
-			prevBtnClass : 'prev-step',
-			nextBtnText : 'Next &gt;',
-			prevBtnText : '&lt; Prev',
+			nextBtn : {
+				text : 'Next &gt;',
+				cssClass : 'next-step'
+			},
+			prevBtn : {
+				text : '&lt; Prev',
+				cssClass : 'prev-step'
+			},
 			submitBtn : {
 				text:'Submit',
 				cssclass:'btn-submit'
@@ -51,7 +55,7 @@
 		
 		function bindHandlers(){
 		
-			$('.'+opt.nextBtnClass).on('click',function(event){
+			$('.'+opt.nextBtn.cssClass).on('click',function(event){
 				var $this = $(this);
 				var $target = $(event.target);
 				
@@ -90,7 +94,7 @@
 			
 			});
 		
-			$('.'+opt.prevBtnClass).on('click',function(event){
+			$('.'+opt.prevBtn.cssClass).on('click',function(event){
 				var $this = $(this);
 				var $target = $(event.target);
 				
@@ -130,8 +134,8 @@
 		var stepContainerStr = '<div class="'+opt.stepContainerClass+'"></div>';
 		var btnContainerStr = '<div class="'+opt.navBtnContainerClass+'"></div>';
 		
-		var prevBtnStr = '<div class="btn '+opt.prevBtnClass+'">'+opt.prevBtnText+'</div>';
-		var nextBtnStr = '<div class="btn '+opt.nextBtnClass+'">'+opt.nextBtnText+'</div>';
+		var prevBtnStr = '<div class="btn '+opt.prevBtn.cssClass+'">'+opt.prevBtn.text+'</div>';
+		var nextBtnStr = '<div class="btn '+opt.nextBtn.cssClass+'">'+opt.nextBtn.text+'</div>';
 		var submitBtnStr = '<input type="submit" class="btn btn-info '+opt.submitBtn.cssClass+'" value="'+opt.submitBtn.text+'" ></input>';
 		var divStr = '<div></div>';
 		
@@ -161,12 +165,12 @@
 			console.log(index);
 			
 			if(index===0){
-				$stepContainer.children().find('.'+opt.prevBtnClass).remove();
+				$stepContainer.children().find('.'+opt.prevBtn.csslass).remove();
 			}else{
 				if(index===opt.distribution.length-1){
 					
 					//This is the last step in the process
-					$stepContainer.children().find('.'+opt.nextBtnClass).remove();
+					$stepContainer.children().find('.'+opt.nextBtn.cssClass).remove();
 					$stepContainer.children('.nav-btn-container').append(submitBtnStr);
 					
 				}
