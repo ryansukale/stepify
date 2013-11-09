@@ -29,10 +29,9 @@
 		
 		function bindHooks(){
 		
-			var prevHooks = opt.prevHooks;
-			var nextHooks = opt.nextHooks;
-			
-			var $steps = $('.'+opt.stepContainerClass);
+			var prevHooks = opt.prevHooks,
+			nextHooks = opt.nextHooks,
+			$steps = $('.'+opt.stepContainerClass);
 			
 			if(!_.isEmpty(prevHooks)){
 				
@@ -56,14 +55,12 @@
 		function bindHandlers(){
 		
 			$('.'+opt.nextBtn.cssClass).on('click',function(event){
-				var $this = $(this);
-				var $target = $(event.target);
+				var $this = $(this),
+				$target = $(event.target);
 				
-				var $sequenceStep = $this.parents('.'+opt.stepContainerClass);
-				
-				var hooks = $sequenceStep.data('hooks-next');
-				
-				var proceed = true;
+				var $sequenceStep = $this.parents('.'+opt.stepContainerClass),
+				hooks = $sequenceStep.data('hooks-next'),
+				proceed = true;
 				
 				if(hooks){
 				
@@ -95,14 +92,12 @@
 			});
 		
 			$('.'+opt.prevBtn.cssClass).on('click',function(event){
-				var $this = $(this);
-				var $target = $(event.target);
+				var $this = $(this),
+				$target = $(event.target);
 				
-				var $sequenceStep = $this.parents('.'+opt.stepContainerClass);
-				
-				var hooks = $sequenceStep.data('hooks-prev');
-				
-				var proceed = true;
+				var $sequenceStep = $this.parents('.'+opt.stepContainerClass),
+				hooks = $sequenceStep.data('hooks-prev'),
+				proceed = true;
 				
 				if(hooks){
 					$.each(hooks, function(index, hookFunction){
@@ -131,25 +126,25 @@
 		
 		var opt = $.extend(defaultOptions, options);
 		
-		var stepContainerStr = '<div class="'+opt.stepContainerClass+'"></div>';
-		var btnContainerStr = '<div class="'+opt.navBtnContainerClass+'"></div>';
+		var stepContainerStr = '<div class="'+opt.stepContainerClass+'"></div>',
+		btnContainerStr = '<div class="'+opt.navBtnContainerClass+'"></div>';
 		
-		var prevBtnStr = '<div class="btn '+opt.prevBtn.cssClass+'">'+opt.prevBtn.text+'</div>';
-		var nextBtnStr = '<div class="btn '+opt.nextBtn.cssClass+'">'+opt.nextBtn.text+'</div>';
-		var submitBtnStr = '<input type="submit" class="btn btn-info '+opt.submitBtn.cssClass+'" value="'+opt.submitBtn.text+'" ></input>';
-		var divStr = '<div></div>';
+		var prevBtnStr = '<div class="btn '+opt.prevBtn.cssClass+'">'+opt.prevBtn.text+'</div>',
+		nextBtnStr = '<div class="btn '+opt.nextBtn.cssClass+'">'+opt.nextBtn.text+'</div>',
+		submitBtnStr = '<input type="submit" class="btn btn-info '+opt.submitBtn.cssClass+'" value="'+opt.submitBtn.text+'" ></input>',
+		divStr = '<div></div>';
 		
-		var stepContainers = 0;
-		var $originalSet = this;
-		var $parent = $originalSet.parent();
+		var stepContainers = 0,
+		currentElement = 0,
+		$originalSet = this,
+		$parent = $originalSet.parent();
 		
-		var currentElement = 0;
 		
 		$.each(opt.distribution, function(index, numberOfElements){
 			
-			var $btnContainer = $(btnContainerStr);
-			var $stepContainer = $(stepContainerStr);
-			var $div = $(divStr);
+			var $btnContainer = $(btnContainerStr),
+			$stepContainer = $(stepContainerStr),
+			$div = $(divStr);
 			
 			$div.addClass(opt.mainContainerClass);
 			$btnContainer.append(prevBtnStr + nextBtnStr);
@@ -165,7 +160,7 @@
 			console.log(index);
 			
 			if(index===0){
-				$stepContainer.children().find('.'+opt.prevBtn.csslass).remove();
+				$stepContainer.children().find('.'+opt.prevBtn.cssClass).remove();
 			}else{
 				if(index===opt.distribution.length-1){
 					
