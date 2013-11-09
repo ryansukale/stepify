@@ -12,6 +12,10 @@
 			prevBtnClass : 'prev-step',
 			nextBtnText : 'Next &gt;',
 			prevBtnText : '&lt; Prev',
+			submitBtn : {
+				text:'Submit',
+				cssclass:'btn-submit'
+			},
 			navBtnContainerClass : 'nav-btn-container',
 			mainContainerClass : 'stepify-elem-container',
 			btnAlign:'center', //Specified positioning of the buttons. Accepts values 'left', 'right', and 'center'.
@@ -128,6 +132,7 @@
 		
 		var prevBtnStr = '<div class="btn '+settings.prevBtnClass+'">'+settings.prevBtnText+'</div>';
 		var nextBtnStr = '<div class="btn '+settings.nextBtnClass+'">'+settings.nextBtnText+'</div>';
+		var submitBtnStr = '<input type="submit" class="btn btn-info '+settings.submitBtn.cssClass+'" value="'+settings.submitBtn.text+'" ></input>';
 		var divStr = '<div></div>';
 		
 		var stepContainers = 0;
@@ -159,7 +164,11 @@
 				$stepContainer.children().find('.'+settings.prevBtnClass).remove();
 			}else{
 				if(index===settings.distribution.length-1){
+					
+					//This is the last step in the process
 					$stepContainer.children().find('.'+settings.nextBtnClass).remove();
+					$stepContainer.children('.nav-btn-container').append(submitBtnStr);
+					
 				}
 			}
 			
