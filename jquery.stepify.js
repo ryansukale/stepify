@@ -1,6 +1,6 @@
 (function ($){
 
-	console.log('Init stepify');
+	//console.log('Init stepify');
 	
 	$.fn.stepify = function(options){
 		
@@ -157,7 +157,7 @@
 			$stepContainer.append($div);
 			$stepContainer.append($btnContainer);
 			
-			console.log(index);
+			//console.log(index);
 			
 			if(index===0){
 				$stepContainer.children().find('.'+opt.prevBtn.cssClass).remove();
