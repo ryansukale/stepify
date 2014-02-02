@@ -1,0 +1,12 @@
+.parent {
+	border: 1px solid #dadada;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.headline{
+	font-family: 'Lato-Light', sans-serif;
+	padding:40px;
+	border-bottom:1px solid #dadada;
+	margin-bottom:20px;
+}

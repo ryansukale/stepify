@@ -11,8 +11,10 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="css/frameworks/bootstrap.min.css">
-		<link href="css/frameworks/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+				<link href="css/frameworks/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
         <link rel="stylesheet" href="css/frameworks/bootstrap-responsive.min.css">
+				
+				<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 		
 		<!-- Sitewide common CSS stylesheet -->
 		<link rel="stylesheet" href="css/common.css">
@@ -24,6 +26,12 @@
 		
 		<!-- Moving the utils stylesheet to the bottom -->
 		<link rel="stylesheet" href="css/utils.css">
+		
+		<script type="text/javascript" src="js/shCore.js"></script>
+	<script type="text/javascript" src="js/shBrushXml.js"></script>
+	<script type="text/javascript" src="js/shBrushJScript.js"></script>
+	<link type="text/css" rel="stylesheet" href="css/shCoreDefault.css"/>
+	
 		
 		<style>
             body {
@@ -51,7 +59,7 @@
 				  <div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active">
-							<a href="./index.html">Home</a>
+							<a href="./index.html">Basic</a>
 						</li>
 					</ul>
 				  </div>
@@ -60,13 +68,62 @@
 			</div>
 
         </div> <!-- /container -->
+				
+				<div class="container">
+					
+					<div class="headline c">
+						<h1>Stepify lets you distribute html elements into a sequence of steps.</h1>
+					</div>
+					
+					<div class="description">
+						<h3>Markup</h3>
+						
+						<pre class="brush: xml">
+							<div class="parent">
+								<div class="child">Para 1</div>
+								<div class="child">Para 2</div>
+								<div class="child">Para 3</div>
+								<div class="child">Para 4</div>
+								<div class="child">Para 5</div>
+								<div class="child">Para 6</div>
+							</div>
+						</pre>
+						
+					</div>
+					
+					<div class="description">
+						<h3>JavaScript</h3>
+						
+						<pre class="brush: js">
+							$('.child').stepify({
+								distribution:[2,1,3]
+							});
+						</pre>
+						
+					</div>
+					
+					<div class="description output">
+						<h3>Output</h3>
+						
+						
+							<div class="parent">
+								<div class="child">Para 1</div>
+								<div class="child">Para 2</div>
+								<div class="child">Para 3</div>
+								<div class="child">Para 4</div>
+								<div class="child">Para 5</div>
+								<div class="child">Para 6</div>
+							</div>
+						
+						
+					</div>
+					
+				</div>
 
     </body>
 	
 	
 	<script src="js/frameworks/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-	<!-- Unminified Scripts for Dev version -->
-	
 	<script src="js/frameworks/jquery-1.9.1.min.js"></script>
 	<script src="js/frameworks/require.js"></script>
 	<script src="js/frameworks/vendor/bootstrap.js"></script>
@@ -74,20 +131,16 @@
 	<script src="js/frameworks/json2.js"></script>
 	<script src="js/frameworks/underscore.js"></script>
 	<script src="js/frameworks/backbone.js"></script>
-	<!-- ---------------------------------- -->
 	
-	<!-- Minified Scripts for Production version  -->
-	
-	<!--
-	<script src="js/frameworks/vendor/require.js"></script>
-	<script src="js/frameworks/vendor/bootstrap.min.js"></script>
-	<script src="js/frameworks/jquery-ui-1.10.0.custom.min.js"></script>
-	<script src="js/frameworks/json2.js"></script>
-	<script src="js/frameworks/underscore.min.js"></script>
-	<script src="js/frameworks/backbone.min.js"></script>
-	-->
+	<script src="./js/jquery.stepify.js"></script>
+	<link rel="stylesheet" href="./css/jquery.stepify.css">	
 	
 	<!-- Script specific to this page -->
 	<script src="js/index.js"></script>
+	
+	
+	<script type="text/javascript">
+		 SyntaxHighlighter.all();
+	</script>
 	
 </html>
